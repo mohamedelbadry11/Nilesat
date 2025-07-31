@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satellite Operations Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- First Page with Image and Password Input -->
+  <div id="firstPage">
+    <img src="https://via.placeholder.com/400x200?text=Nilesat+Operations" alt="Nilesat Operations">
+    <h2>Satellite Operations Dashboard</h2>
+    <p>Please enter your credentials to access the system</p>
+    <input type="password" id="passwordInput" placeholder="Enter Password">
+    <button onclick="checkPassword()">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <p id="errorMessage">Incorrect Password. Please try again.</p>
+  </div>
+
+  <!-- Main Content (Hidden Initially) -->
+  <div id="mainContent">
+    <div class="container">
+      <!-- News Bar -->
+      <div class="news-bar-container">
+        <div class="news-bar" id="newsBar">
+          <span id="newsText">Nilesat Operations Dashboard - Monitoring satellites 201 and 301</span>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('tab1')">
+          <i class="fas fa-satellite"></i> Space Sector (Cairo)
+        </button>
+        <button class="tab" onclick="showTab('tab5')">
+          <i class="fas fa-satellite-dish"></i> Space Sector (Alex)
+        </button>
+        <button class="tab" onclick="showTab('tab4')">
+          <i class="fas fa-tv"></i> Earth Sector
+        </button>
+        <button class="tab" onclick="showTab('tab2')">
+          <i class="fas fa-calculator"></i> Link Budget
+        </button>
+        <button class="tab" onclick="showTab('tab3')">
+          <i class="fas fa-database"></i> Satellite Tubes
+        </button>
+        <button class="tab" onclick="showTab('tab6')">
+          <i class="fas fa-rocket"></i> Satellite Calculator
+        </button>
+        <button class="tab" onclick="showTab('tab7')">
+          <i class="fas fa-random"></i> Close Approach
+        </button>
+        <button class="tab" onclick="showTab('tab8')">
+          <i class="fas fa-broadcast-tower"></i> TV Channels
+        </button>
+        <button class="tab" onclick="showTab('tab9')">
+          <i class="fas fa-folder"></i> Documents
+        </button>
+        <button class="tab" onclick="showTab('tab10')">
+          <i class="fas fa-comment"></i> Comments
+        </button>
+        <button class="tab" onclick="showTab('tab11')">
+          <i class="fas fa-calendar-alt"></i> Calendar
+        </button>
+        <button class="tab" onclick="showTab('tab12')">
+          <i class="fas fa-chart-line"></i> Analytics
+        </button>
+        <button class="tab" onclick="showTab('tab13')">
+          <i class="fas fa-chart-line"></i> Sat.Localization
+        </button>
+        <button class="tab" onclick="showTab('tab14')">
+          <i class="fas fa-chart-line"></i> Sat.Predition
+        </button>
+        <button class="tab" onclick="showTab('tab15')">
+          <i class="fas fa-chart-line"></i> Training Ceter
+        </button>
+        <button class="tab" onclick="showTab('tab16')">
+          <i class="fas fa-chart-line"></i> Day Log
+        </button>
+        <button class="tab" onclick="showTab('tab17')">
+          <i class="fas fa-clock"></i> Employee Timesheets
+        </button>
+      </div>
+
+           <!-- Tab Content -->
+      <div class="content">
+        <!-- Tab 1: Nilesat Space Sector Cairo -->
+        <div id="tab1" class="tab-content">
+          <header>
+            <div class="logo">
+              <h1><i class="fas fa-satellite"></i> Nilesat Space Sector - Cairo</h1>
+              <p>Satellite Control Center - Monitoring and Operations</p>
+            </div>
+          </header>
+
+          <div class="groups">
+            <!-- Group 1: Satellite Control Eng Activity -->
+            <div class="group">
+              <h2><i class="fas fa-satellite-dish"></i> Satellite Control Eng Activity</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1zv7XIlBUizFCbhMR0ooCkyuWKOgdI9XFI5E4bHphZ50/edit?usp=drive_link')">
+                <i class="fas fa-globe"></i> ITU Channel
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1LJj9nqPJQzJYCM6-dfIf-fc8ENCWHdEBSdRtAhnq39I/edit?usp=drive_link')">
+                <i class="fas fa-map-marker-alt"></i> Localization
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1Avvh9oXisZaQ-5o6EZxvAclaVWO-Y1RLkvjqA3YQO3o/edit?usp=drive_link')">
+                <i class="fas fa-cogs"></i> RW Unloading
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1DRXfB680KIfYQXWcm2h8E8JqET-kN3IkiCEGY9n8O28/edit?usp=drive_link')">
+                <i class="fas fa-users"></i> Weekly Meeting
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1aGdvtVZNXm9NVXeHh6bd7UIMmUtEKlgZU08WYlevTYM/edit?usp=drive_link')">
+                <i class="fas fa-calendar"></i> SCC Schedule
+              </button>
+            </div>
+
+            <!-- Group 2: Maintenance Eng Activity -->
+            <div class="group">
+              <h2><i class="fas fa-tools"></i> Maintenance Eng Activity</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1DoBqHJ6B3Z2_BODn75Z6YauETlzFyEnbzpnJmDlmWbY/edit?usp=drive_link')">
+                <i class="fas fa-signal-perfect"></i> Antenna Utilities
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1iw_8TDQx8vofonE-961DP-TLx8CVXd4XR2yz7SnphMY/edit?usp=drive_link')">
+                <i class="fas fa-broadcast-tower"></i> RF Daily Action
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1__uKEamZbDxXQvFpD9q3DIV9yGrC3RHpVk1LA2Vn_GI/edit?usp=drive_link')">
+                <i class="fas fa-network-wired"></i> BBE Net Daily Action
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1pz1xmWBnDUwSeZLH6-oplzCZca77e898jcK5e9bR_1A/edit?usp=drive_link')">
+                <i class="fas fa-laptop-code"></i> SW Daily Action
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1hv7jHjtaPYXNOgj_jT9jTHBMYpExSoIqcV07nX0ccxo/edit?usp=drive_link')">
+                <i class="fas fa-phone-alt"></i> M. On-call
+              </button>
+            </div>
+
+            <!-- Group 3: Satellite Eng Activity -->
+            <div class="group">
+              <h2><i class="fas fa-satellite"></i> Satellite Eng Activity</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1mWOI9pWgpdYK8wendAoJEVW6ho-ySruZ9OiV9Qq8qBo/edit?usp=drive_link')">
+                <i class="fas fa-calendar-check"></i> Yearly Op. 201
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1L1LnMEbvBIpPJo3wLUAPyykPIo34uc4j826NbCdY2kE/edit?usp=drive_link')">
+                <i class="fas fa-calendar-check"></i> Yearly Op. 301
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_13')">
+                <i class="fas fa-chart-line"></i> Telemetry Analysis
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1QY_Zo8Yqvbmzoj10m-BXEvYukLYyvGFS85riyYbFFqc/edit?usp=drive_link')">
+                <i class="fas fa-battery-three-quarters"></i> Procedure
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1iiXvgGCOwl96KgRulklT3WhSiNJwV9L07fQQcEitrpc/edit?usp=drive_link')">
+                <i class="fas fa-phone-alt"></i> Sat. On-Call
+              </button>
+            </div>
+
+            <!-- Group 4: SCC Reports -->
+            <div class="group">
+              <h2><i class="fas fa-clipboard-list"></i> SCC Reports</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1ltdnFw2_5RUT_JjBZSN_3oThSWPRX72chKElo-17phQ/edit?usp=drive_link')">
+                <i class="fas fa-book"></i> Logbook GCS
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/19l2TSsLOjBhld9Zafyb7XeaxJphM9u41DEKDQD_f8uk/edit?usp=drive_link')">
+                <i class="fas fa-book"></i> Logbook 201
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/12kbJiqTn7uDt3_WRZXERJHzEyFH6IL8oURrgCX2kLW4/edit?usp=drive_link')">
+                <i class="fas fa-book"></i> Logbook 301
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1yTdpnT_Uf4N5PBgLKsbiMaFpXJtylDANfHILfD9gkuU/edit?usp=drive_link')">
+                <i class="fas fa-file-alt"></i> SCC Reports
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1wXvXiFqkmfGQpbIKSPkocgcxPiMFS5xfiYFMjShlcI0/edit?usp=drive_link')">
+                <i class="fas fa-chart-pie"></i>Inventory_Purchase
+              </button>
+            </div>
+
+            <!-- Group 5: Fax and ORS -->
+            <div class="group">
+              <h2><i class="fas fa-file-contract"></i> Fax and ORS</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1MVvDfEQeAat5DP3KHlVft30QLUaz4usl08kCo3VMwXA/edit?usp=drive_link')">
+                <i class="fas fa-file-signature"></i> ORs
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1WRNeI5m8qJhU2XtjRsK0WcE7e5bbAxlv/edit?usp=drive_link&ouid=103846440588901770481&rtpof=true&sd=true')">
+                <i class="fas fa-moon"></i> Eclipse 201
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1ydQ16Zw_ME9LHQGFIi3ofjSCvScrZIGP/edit?usp=drive_link&ouid=103846440588901770481&rtpof=true&sd=true')">
+                <i class="fas fa-moon"></i> Eclipse 301
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_24')">
+                <i class="fas fa-file-export"></i> Export Reports
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_25')">
+                <i class="fas fa-history"></i> Archive
+              </button>
+            </div>
+
+            <!-- Group 6: Miscellaneous -->
+            <div class="group">
+              <h2><i class="fas fa-random"></i> Miscellaneous</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1uq5Edwf9_rMWDm7BZyvbNxXup84wggX_/edit?usp=drive_link&ouid=103846440588901770481&rtpof=true&sd=true')">
+                <i class="fas fa-moon"></i> Predicted N301 Eclipse
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1ZNi-fCyWLHz3y9EEr-M14WtzeVuhR4xu/edit?usp=drive_link&ouid=103846440588901770481&rtpof=true&sd=true')">
+                <i class="fas fa-moon"></i> Predicted N201 Eclipse
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1xC8E-ifpAGy4BROjY9IRSJgQS712VF4KndoNcvXkzCo/edit?usp=drive_link')">
+                <i class="fas fa-user-tie"></i> Site Manager
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1ae-CLW4AtRM0bFxO3bA3kg5IVbbUpUzLVwWtf1dDpf0/edit?usp=drive_link')">
+                <i class="fas fa-users"></i> Customer List
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1elMhieS15kka226-i-pIeXOkgpzkuHIx/edit?usp=drive_link&ouid=103846440588901770481&rtpof=true&sd=true')">
+                <i class="fas fa-shield-alt"></i> Acronyms
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Link Budget Calculator -->
+      <!-- Tab 2: Enhanced Link Budget Calculator -->
+                <div id="tab2" class="tab-content">
+                    <h2><i class="fas fa-calculator"></i> Satellite Link Budget Calculator</h2>
+                    
+                    <div class="link-budget-container">
+                        <div class="link-budget-inputs">
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Satellite Longitude (deg.):</label>
+                                    <input type="number" id="satLon" step="0.1" value="7" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Ground Station Latitude (deg.):</label>
+                                    <input type="number" id="gsLat" step="0.0001" value="30.0444" required>
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Ground Station Longitude (deg.):</label>
+                                    <input type="number" id="gsLon" step="0.0001" value="31.2357" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Ground Station Altitude (meters):</label>
+                                    <input type="number" id="gsAlt" value="0" step="any">
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Frequency:</label>
+                                    <div style="display: flex; gap: 10px;">
+                                        <input type="number" id="frequency" step="0.01" value="12" required>
+                                        <select id="frequencyUnit">
+                                            <option value="Hz">Hz</option>
+                                            <option value="kHz">kHz</option>
+                                            <option value="MHz">MHz</option>
+                                            <option value="GHz" selected>GHz</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Transmitter Power (PTX):</label>
+                                    <div style="display: flex; gap: 10px;">
+                                        <input type="number" id="ptx" step="0.01" value="10" required>
+                                        <select id="ptxUnit">
+                                            <option value="dBm" selected>dBm</option>
+                                            <option value="W">W</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Antenna Efficiency:</label>
+                                    <input type="number" id="efficiency" step="0.01" min="0" max="1" value="0.6" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>TX Antenna Diameter (m):</label>
+                                    <input type="number" id="dtx" step="0.01" value="1.2" required>
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>RX Antenna Diameter (m):</label>
+                                    <input type="number" id="drx" step="0.01" value="1.8" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>System Noise Temperature (K):</label>
+                                    <input type="number" id="systemNoiseTemp" step="1" value="290" required>
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>TX Losses (dB):</label>
+                                    <input type="number" id="ltx" step="0.1" value="2" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>RX Losses (dB):</label>
+                                    <input type="number" id="lrx" step="0.1" value="2" required>
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Misc. Losses (dB):</label>
+                                    <input type="number" id="lm" step="0.1" value="3" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Bandwidth (MHz):</label>
+                                    <input type="number" id="bandwidth" step="1" value="36" required>
+                                </div>
+                            </div>
+                            
+                            <button class="calculate-btn" onclick="calculateLinkBudget()">
+                                <i class="fas fa-calculator"></i> Calculate Link Budget
+                            </button>
+                        </div>
+                        
+                        <div class="link-budget-results">
+                            <div id="results" style="display: none;">
+                                <h3><i class="fas fa-chart-bar"></i> Link Budget Results</h3>
+                                <table class="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Value</th>
+                                            <th>Calculation Hint</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resultsBody"></tbody>
+                                </table>
+                                
+                                <div class="chart-container">
+                                    <canvas id="linkBudgetChart"></canvas>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <canvas id="powerBudgetChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Abbreviations Section -->
+                    <div class="abbreviations">
+                        <h3><i class="fas fa-info-circle"></i> Common Satellite Abbreviations</h3>
+                        <div class="abbreviations-list">
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">EIRP</span> - Effective Isotropic Radiated Power
+                            </div>
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">G/T</span> - Figure of Merit (Gain-to-Temperature ratio)
+                            </div>
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">FSL</span> - Free Space Loss
+                            </div>
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">C/N</span> - Carrier-to-Noise ratio
+                            </div>
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">C/I</span> - Carrier-to-Interference ratio
+                            </div>
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">Eb/No</span> - Energy per bit to noise density
+                            </div>
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">BER</span> - Bit Error Rate
+                            </div>
+                            <div class="abbreviation-item">
+                                <span class="abbreviation-term">SFD</span> - Saturation Flux Density
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- Tab 3: Satellite Tubes -->
+<!-- Tab 3: Satellite Tubes -->
+
+    <div id="tab3" class="tab-content">
+        <h1><i class="fas fa-database"></i> Satellite Operation Data</h1>
+        
+        <div class="input-group">
+            <div>
+                <label for="sheetType">Select Sheet Type:</label>
+                <select id="sheetType" onchange="updateSheetUrl()">
+                    <option value="">-- Select Sheet Type --</option>
+                    <option value="itu">ITU Channel</option>
+                    <option value="channel">Channel Data</option>
+                    <option value="tm">Telemetry (TM)</option>
+                    <option value="tc">Telecommand (TC)</option>
+                    <option value="acronyms">Acronyms</option>
+                    <option value="sheet1">Sheet 1</option>
+                    <option value="sheet2">Sheet 2</option>
+                    <option value="sheet3">Sheet 3</option>
+                    <option value="custom">Custom URL</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="spreadsheetUrl">Google Sheet URL:</label>
+                <input type="text" id="spreadsheetUrl" placeholder="Google Sheet URL">
+                <button onclick="loadGoogleSheet()">
+                    <i class="fas fa-cloud-download-alt"></i> Load Sheet
+                </button>
+            </div>
+            
+            <div>
+                <label for="fileInput">Or upload Excel file:</label>
+                <input type="file" id="fileInput" accept=".xls,.xlsx" onchange="loadExcelFile()">
+            </div>
+            
+            <div>
+                <label for="searchTerm">Search Data:</label>
+                <div class="search-container">
+                    <input type="text" id="searchTerm" placeholder="Search term..." 
+                           oninput="showSearchSuggestions()">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                
+                <div class="search-buttons">
+                    <button onclick="searchData()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                    <button onclick="clearResults()" class="danger">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="satelliteTubesResults"></div>
+        
+        <!-- Contact Section -->
+        <div class="container">
+            <h4><i class="fas fa-phone-alt"></i> Contact Us</h4>
+            <button id="importButton">
+                <i class="fas fa-user-plus"></i> Import Contacts
+            </button>
+            
+            <div class="phone-input-container">
+                <select id="phoneSelect">
+                    <option value="">Select a contact</option>
+                </select>
+                <input type="text" id="phoneInput" placeholder="Or enter phone number">
+            </div>
+            
+            <textarea id="messageInput" placeholder="Enter your message"></textarea>
+            
+            <button id="sendButton">
+                <i class="fab fa-whatsapp"></i> Send via WhatsApp
+            </button>
+        </div>
+    </div>
+
+        <!-- Tab 4: Nilesat Earth Sector -->
+        <div id="tab4" class="tab-content">
+          <header>
+            <h1><i class="fas fa-tv"></i> Nilesat TV & Radio Channels</h1>
+            <p>Monitoring and management of broadcast channels</p>
+          </header>
+
+          <div class="groups">
+            <!-- Group 1: Nilesat (201 & 301) TV, Radio channels -->
+            <div class="group">
+              <h2><i class="fas fa-broadcast-tower"></i> Nilesat (201 & 301) TV/Radio</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1RdAY8F9oB5ef13BdTZRJeOSwhWtEsMuGmp1DwNNx7yU/edit?usp=drive_link')">
+                <i class="fas fa-tv"></i> Nilesat 201 Channels
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1BLxziwmnKduTtrlx9mWxfSkjbPi7ryLflLjOx50_dz4/edit?usp=drive_link')">
+                <i class="fas fa-tv"></i> Nilesat 301 Channels
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/19ytNMCEPkI3BYFNakcjwegz3JM3Isv4QPnt93_cyNfI/edit?usp=drive_link')">
+                <i class="fas fa-satellite-dish"></i> Eutelsat 7.3°W
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_4')">
+                <i class="fas fa-chart-line"></i> Signal Quality
+              </button>
+              <button onclick="openUrl('https://www.ventusky.com/')">
+                <i class="fas fa-cloud-sun-rain"></i> Current Weather
+              </button>
+            </div>
+
+            <!-- Group 2: Ground Station Operations -->
+            <div class="group">
+              <h2><i class="fas fa-building"></i> Ground Station Operations</h2>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_11')">
+                <i class="fas fa-clipboard-list"></i> Station Logs
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_12')">
+                <i class="fas fa-bolt"></i> Power Usage
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_13')">
+                <i class="fas fa-cloud"></i> Weather Reports
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_14')">
+                <i class="fas fa-tools"></i> Maintenance Logs
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_15')">
+                <i class="fas fa-exclamation-triangle"></i> Incident Reports
+              </button>
+            </div>
+
+            <!-- Group 3: Data Processing -->
+            <div class="group">
+              <h2><i class="fas fa-server"></i> Data Processing</h2>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_16')">
+                <i class="fas fa-database"></i> Data Logs
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_17')">
+                <i class="fas fa-cogs"></i> Processing Reports
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_18')">
+                <i class="fas fa-bug"></i> Error Logs
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_19')">
+                <i class="fas fa-sync-alt"></i> System Updates
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_20')">
+                <i class="fas fa-tachometer-alt"></i> Performance Reports
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Nilesat Space Sector Alex -->
+        <div id="tab5" class="tab-content">
+          <header>
+            <h1><i class="fas fa-satellite-dish"></i> Nilesat Space Sector - Alexandria</h1>
+            <p>Satellite Control Center - Alexandria Operations</p>
+          </header>
+
+          <div class="groups">
+            <!-- Group 1: SCC Reports -->
+            <div class="group">
+              <h2><i class="fas fa-clipboard-list"></i> SCC Reports</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1Z068ZudVmOuovxbktNsa6JkHLsknz4cNIQJhgzgX7yk/edit?usp=drive_link')">
+                <i class="fas fa-book"></i> Logbook GCS
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1uDdQ6Wrg8HMsv7Y_mEOplR8I-wzHD6HsNgbBFetsSZQ/edit?usp=drive_link')">
+                <i class="fas fa-book"></i> Logbook 201
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1LXyF6GBcRNPolMKpKKlvT2LFMhA5h3qqUswCIf2eJGg/edit?usp=drive_link')">
+                <i class="fas fa-book"></i> Logbook 301
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/15bfq-OsG5UxMmzRLia154Anz16twMH-elMUeQuUI2qA/edit?usp=drive_link')">
+                <i class="fas fa-map-marker-alt"></i> Localization
+              </button>
+              <button onclick="openUrl('https://drive_link')">
+                <i class="fas fa-calendar"></i> SCC Schedule
+              </button>
+            </div>
+
+            <!-- Group 2: Satellite Operations -->
+            <div class="group">
+              <h2><i class="fas fa-satellite"></i> Satellite Operations</h2>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_1')">
+                <i class="fas fa-clipboard-check"></i> Operation Logs
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_2')">
+                <i class="fas fa-check-circle"></i> System Checks
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_3')">
+                <i class="fas fa-wrench"></i> Maintenance Logs
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_4')">
+                <i class="fas fa-chart-line"></i> Performance Reports
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_5')">
+                <i class="fas fa-exclamation-circle"></i> Incident Reports
+              </button>
+            </div>
+
+            <!-- Group 3: Communication Systems -->
+            <div class="group">
+              <h2><i class="fas fa-wifi"></i> Communication Systems</h2>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_6')">
+                <i class="fas fa-antenna"></i> Antenna Status
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_7')">
+                <i class="fas fa-signal"></i> Signal Quality
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_8')">
+                <i class="fas fa-tachometer-alt"></i> Bandwidth Usage
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_9')">
+                <i class="fas fa-bug"></i> Error Logs
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_10')">
+                <i class="fas fa-sync-alt"></i> System Updates
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 6: Satellite Calculator -->
+       <div id="tab6" class="tab-content">
+        <h1><i class="fas fa-rocket"></i> Satellite Parameter Calculator</h1>
+        
+        <form id="parameterForm">
+            <div class="input-group">
+                <div>
+                    <label for="parameter">Select Parameter to Compute:</label>
+                    <select id="parameter" required style="width: 100%; padding: 10px;">
+                        <option value="">------ Select Parameter ------</option>
+                        <option value="antennaGain">Antenna Gain (G)</option>
+                        <option value="freeSpaceLoss">Free Space Loss (FSL)</option>
+                        <option value="eirp">Effective Isotropic Radiated Power (EIRP)</option>
+                        <option value="GT">Figure of Merit (G/T)</option>
+                        <option value="thermalNoise">Thermal Noise (N)</option>
+                        <option value="CI">Carrier-to-Interference Ratio (C/I)</option>
+                        <option value="overlapBandwidth">Overlap Bandwidth for f1 and f2</option>
+                        <option value="bandwidthOverlapFactor">Bandwidth Overlap Factor (B)</option>
+                        <option value="earthStationAntennaDiameter">Earth Station Antenna Diameter</option>
+                        <option value="satelliteAntennaDiameter">Satellite Antenna Diameter</option>
+                        <option value="timeConversion">Convert Egypt Local Epoch to Time Systems</option>
+                        <option value="orbitalParameters">Orbital Parameters Calculator</option>
+                        <option value="lookAngles">Ground Station Look Angles</option>
+                        <option value="coverageArea">Satellite Coverage Area</option>
+                        <option value="linkMargin">Link Margin Calculator</option>
+                        <!-- New Parameters -->
+                        <option value="beamwidth">Antenna Beamwidth</option>
+                        <option value="pathLoss">Path Loss</option>
+                        <option value="dopplerShift">Doppler Shift</option>
+                        <option value="satelliteVelocity">Satellite Velocity</option>
+                        <option value="orbitalPeriod">Orbital Period</option>
+                        <option value="slantRange">Slant Range</option>
+                        <option value="rainAttenuation">Rain Attenuation</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="inputFields">
+                <!-- Input fields will be dynamically added here -->
+            </div>
+
+            <button type="submit">
+                <i class="fas fa-calculator"></i> Compute
+            </button>
+            <button type="button" id="deleteResults" style="background-color: var(--danger-color); margin-left: 10px;">
+                <i class="fas fa-trash"></i> Delete Results
+            </button>
+        </form>
+
+        <h2><i class="fas fa-chart-bar"></i> Results</h2>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Results will be populated here -->
+            </tbody>
+        </table>
+
+        <div class="chart-container" id="calculationChartContainer" style="display: none;">
+            <canvas id="calculationChart"></canvas>
+        </div>
+
+        <!-- Orbit Visualization -->
+        <div class="orbit-container" id="orbitContainer" style="display: none;">
+            <div class="earth"></div>
+            <div class="orbit-path" id="orbitPath"></div>
+            <div class="satellite" id="satellite"></div>
+        </div>
+
+        <!-- Abbreviations Section -->
+        <div class="abbreviations">
+            <h3><i class="fas fa-info-circle"></i> Key Satellite Formulas</h3>
+            <div class="abbreviations-list">
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Antenna Gain (G):</span> G = 10·log₁₀(η·(π·D/λ)²
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Free Space Loss (FSL):</span> FSL = 20·log₁₀(4πR/λ)
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">EIRP:</span> EIRP = P<sub>TX</sub> + G<sub>TX</sub> - L<sub>TX</sub>
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">G/T:</span> G/T = G<sub>RX</sub> - 10·log₁₀(T<sub>sys</sub>)
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Thermal Noise (N):</span> N = k·T<sub>sys</sub>·B
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">C/I:</span> C/I = C - I + D + X<sub>pol</sub> - B
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Orbital Period:</span> T = 2π√(a³/μ)
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Velocity:</span> v = √(μ(2/r - 1/a))
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Coverage Angle:</span> θ = cos⁻¹(R/(R+h))
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Footprint Diameter:</span> D = 2h·tanθ
+                </div>
+                <!-- New formulas -->
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Beamwidth:</span> θ = 70λ/D (degrees)
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Path Loss:</span> L = FSL + Atmospheric Losses
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Doppler Shift:</span> Δf = (v·f·cosθ)/c
+                </div>
+                <div class="abbreviation-item">
+                    <span class="abbreviation-term">Rain Attenuation:</span> A = a·R<sup>b</sup>·L·k
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+        <!-- Tab 7: Close Approach -->
+        <div id="tab7" class="tab-content">
+          <header>
+            <h1><i class="fas fa-random"></i> Nilesat Close Approach Monitoring</h1>
+            <p>Track and analyze potential satellite conjunctions</p>
+          </header>
+
+          <div class="groups">
+            <!-- Group 1: Close Approach Tools -->
+            <div class="group">
+              <h2><i class="fas fa-tools"></i> Close Approach Tools</h2>
+              <button onclick="openUrl('https://focusocweb.gmv.com/auth/realms/focusoc/protocol/openid-connect/auth?client_id=frontend&redirect_uri=https%3A%2F%2Ffocusocweb.gmv.com%2F&state=07d31d59-b0c6-429a-8b83-9b86434b3843&response_mode=fragment&response_type=code&scope=openid&nonce=5d2a38c1-a8c5-4f73-bf65-80f6a6a5cf32&code_challenge=WoYyEgin5a2UPZ-sO9p41jamy6I5uYzNtoqZ5qisgCo&code_challenge_method=S256')">
+                <i class="fas fa-external-link-alt"></i> focusocweb.gmv
+              </button>
+              <button onclick="openUrl('https://www.space-track.org/auth/login')">
+                <i class="fas fa-external-link-alt"></i> Space-Track.org
+              </button>
+              <button onclick="openUrl('https://www.eusst.eu/')">
+                <i class="fas fa-external-link-alt"></i> Eusst
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1R_yE9MprBAN1aXVFWSt03Cl2aUUAEzP-NKH-i8Jnt1M/edit?usp=drive_link')">
+                <i class="fas fa-chart-line"></i> Analysis Difference
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_25')">
+                <i class="fas fa-database"></i> Historical Data
+              </button>
+            </div>
+
+            <!-- Group 2: Close Approach Reports -->
+            <div class="group">
+              <h2><i class="fas fa-file-alt"></i> Close Approach Reports</h2>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_26')">
+                <i class="fas fa-file-pdf"></i> Report 1
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_27')">
+                <i class="fas fa-file-pdf"></i> Report 2
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_28')">
+                <i class="fas fa-file-pdf"></i> Report 3
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_29')">
+                <i class="fas fa-file-pdf"></i> Report 4
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_30')">
+                <i class="fas fa-file-pdf"></i> Report 5
+              </button>
+            </div>
+
+            <!-- Group 3: Close Approach Calculator -->
+            <div class="group">
+              <h2><i class="fas fa-calculator"></i> Close Approach Calculator</h2>
+              <button onclick="showCloseApproachCalculator()">
+                <i class="fas fa-calculator"></i> Calculate Approach
+              </button>
+              <button onclick="showRiskAssessment()">
+                <i class="fas fa-shield-alt"></i> Risk Assessment
+              </button>
+              <button onclick="showCollisionProbability()">
+                <i class="fas fa-project-diagram"></i> Collision Probability
+              </button>
+              <button onclick="showManeuverPlanning()">
+                <i class="fas fa-space-shuttle"></i> Maneuver Planning
+              </button>
+              <button onclick="showHistoricalAnalysis()">
+                <i class="fas fa-history"></i> Historical Analysis
+              </button>
+            </div>
+          </div>
+          
+          <!-- Close Approach Calculator Form (initially hidden) -->
+          <div id="closeApproachCalculator" style="display: none; margin-top: 30px;">
+            <h3><i class="fas fa-calculator"></i> Close Approach Calculator</h3>
+            
+            <div class="input-group">
+              <div>
+                <label>Primary Satellite NORAD ID:</label>
+                <input type="number" id="primarySatId" placeholder="e.g., 12345">
+              </div>
+              
+              <div>
+                <label>Secondary Object NORAD ID:</label>
+                <input type="number" id="secondarySatId" placeholder="e.g., 67890">
+              </div>
+              
+              <div>
+                <label>Start Date:</label>
+                <input type="datetime-local" id="caStartDate">
+              </div>
+              
+              <div>
+                <label>End Date:</label>
+                <input type="datetime-local" id="caEndDate">
+              </div>
+            </div>
+            
+            <button onclick="calculateCloseApproach()" class="calculate-btn">
+              <i class="fas fa-calculator"></i> Calculate
+            </button>
+            
+            <div id="caResults" style="display: none; margin-top: 20px;">
+              <h4>Close Approach Results</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time of Closest Approach</th>
+                    <th>Miss Distance (km)</th>
+                    <th>Relative Velocity (km/s)</th>
+                    <th>Probability of Collision</th>
+                  </tr>
+                </thead>
+                <tbody id="caResultsBody">
+                </tbody>
+              </table>
+              
+              <div class="chart-container">
+                <canvas id="caChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 8: TV Channels -->
+        <div id="tab8" class="tab-content">
+          <header>
+            <h1><i class="fas fa-broadcast-tower"></i> TV Channel Management</h1>
+            <p>Monitoring and management of broadcast channels</p>
+          </header>
+
+          <div class="groups">
+            <!-- Group 1: Channel Management -->
+            <div class="group">
+              <h2><i class="fas fa-tv"></i> Channel Management</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1RdAY8F9oB5ef13BdTZRJeOSwhWtEsMuGmp1DwNNx7yU/edit?usp=drive_link')">
+                <i class="fas fa-list"></i> Channel List
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1BLxziwmnKduTtrlx9mWxfSkjbPi7ryLflLjOx50_dz4/edit?usp=drive_link')">
+                <i class="fas fa-signal"></i> Signal Status
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_3')">
+                <i class="fas fa-chart-line"></i> Quality Metrics
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_4')">
+                <i class="fas fa-exclamation-triangle"></i> Issues Log
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_5')">
+                <i class="fas fa-history"></i> Historical Data
+              </button>
+            </div>
+
+            <!-- Group 2: Broadcast Tools -->
+            <div class="group">
+              <h2><i class="fas fa-tools"></i> Broadcast Tools</h2>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_6')">
+                <i class="fas fa-sliders-h"></i> Encoder Settings
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_7')">
+                <i class="fas fa-satellite-dish"></i> Uplink Status
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_8')">
+                <i class="fas fa-broadcast-tower"></i> Transponder Map
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_9')">
+                <i class="fas fa-file-contract"></i> Contracts
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_10')">
+                <i class="fas fa-users"></i> Customer List
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 9: Satellite Documents -->
+        <div id="tab9" class="tab-content">
+          <header>
+            <h1><i class="fas fa-folder"></i> Nilesat Documents Repository</h1>
+            <p>Centralized storage for satellite documentation</p>
+          </header>
+
+          <div class="groups">
+            <!-- Group 1: Satellite Documentation -->
+            <div class="group">
+              <h2><i class="fas fa-satellite"></i> Satellite Documentation</h2>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/10MQt4PVvZgYB0FmVpYVWRJTrCmt5sOrVvPldSsLcfZY/edit?usp=drive_link')">
+                <i class="fas fa-file-alt"></i> Nilesat Doc 201
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1jmR-socgyjemjFoUBn2LhzMT75hkAiJpSgy_myY_IGk/edit?usp=drive_link')">
+                <i class="fas fa-file-alt"></i> Nilesat Doc 301
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1NeBVOBOLxsgGzKerFjjG7EIFyybC7r0K6lgcCvl5sqo/edit?usp=drive_link')">
+                <i class="fas fa-file-pdf"></i> SAT RFP Doc
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1AeaZlwDse69NdmKfh-IpKZ62KHF-ZiVEwxjwQZOG4Xg/edit?usp=drive_link')">
+                <i class="fas fa-book"></i> Satellite Books
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_4')">
+                <i class="fas fa-file-pdf"></i> Technical Manuals
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1yEHFJErc1B3ea0q2zLM7xZpW2dhr-znle7YFbGPv1dM/edit?usp=drive_link')">
+                <i class="fas fa-file-contract"></i> Contracts
+              </button>
+            </div>
+
+            <!-- Group 2: Operations Documentation -->
+            <div class="group">
+              <h2><i class="fas fa-clipboard-list"></i> Ground Station Documentation</h2>
+             
+               <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1fqiHpQ_RUnG8IHPLMjNGNBV2L-pfuxc4fUvyUhESPhs/edit?usp=drive_link')">
+                <i class="fas fa-file-invoice"></i> Ground Station Doc
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1EhLzSbFRvgZ1yP-t_5ni-QUwUfopNX41Kl9xL7XcBAo/edit?usp=drive_link')">
+                <i class="fas fa-file-medical"></i> Ground RFP Doc
+              </button>
+              <button onclick="openUrl('https://docs.google.com/spreadsheets/d/1MCZc6RJ2afl_G2oJ8_Mxk6ESXsnOInJT9eA1ZnAYgYE/edit?usp=drive_link')">
+                <i class="fas fa-file-signature"></i> Ground Procedure
+              </button>
+               <button onclick="openUrl('URL_TO_GOOGLE_SHEET_9')">
+                <i class="fas fa-file-archive"></i> Arcticle
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_9')">
+                <i class="fas fa-file-archive"></i> Archives
+              </button>
+              <button onclick="openUrl('URL_TO_GOOGLE_SHEET_10')">
+                <i class="fas fa-file-upload"></i> Upload Documents
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 10: Comments -->
+        <!-- Tab 10: Enhanced Comments/News Bar -->
+                <div id="tab10" class="tab-content">
+                    <h2><i class="fas fa-comment"></i> News Bar Settings</h2>
+                    
+                    <div class="news-controls">
+                        <div class="news-settings">
+                            <div class="input-group">
+                                <label for="newsInput">News Text:</label>
+                                <input type="text" id="newsInput" placeholder="Enter news text...">
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label for="textColor">Text Color:</label>
+                                    <input type="color" id="textColor" value="#ffffff">
+                                </div>
+                                <div class="input-group">
+                                    <label for="backgroundColor">Background Color:</label>
+                                    <input type="color" id="backgroundColor" value="#1e3a8a">
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label for="borderColor">Border Color:</label>
+                                    <input type="color" id="borderColor" value="#3b82f6">
+                                </div>
+                                <div class="input-group">
+                                    <label for="borderWidth">Border Width (px):</label>
+                                    <input type="number" id="borderWidth" min="0" value="2">
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label for="fontSize">Font Size (px):</label>
+                                    <input type="number" id="fontSize" min="10" value="16">
+                                </div>
+                                <div class="input-group">
+                                    <label for="fontFamily">Font Family:</label>
+                                    <select id="fontFamily">
+                                        <option value="Arial, sans-serif">Arial</option>
+                                        <option value="Times New Roman, serif">Times New Roman</option>
+                                        <option value="Courier New, monospace">Courier New</option>
+                                        <option value="Verdana, sans-serif">Verdana</option>
+                                        <option value="Georgia, serif">Georgia</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label for="speed">Scroll Speed (seconds):</label>
+                                    <input type="number" id="speed" min="1" value="20">
+                                </div>
+                                <div class="input-group">
+                                    <label for="scheduleTime">Schedule Time:</label>
+                                    <input type="datetime-local" id="scheduleTime">
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <button onclick="updateNews()" class="calculate-btn">
+                                    <i class="fas fa-sync-alt"></i> Update News
+                                </button>
+                                <button onclick="clearNews()" style="margin-left: 10px;" class="calculate-btn">
+                                    <i class="fas fa-trash"></i> Clear
+                                </button>
+                                <button onclick="playPauseNews()" id="playPauseBtn" style="margin-left: 10px;" class="calculate-btn">
+                                    <i class="fas fa-pause"></i> Pause
+                                </button>
+                                <button onclick="scheduleMessage()" style="margin-left: 10px;" class="calculate-btn">
+                                    <i class="fas fa-clock"></i> Schedule
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="news-history">
+                            <h3>Message History</h3>
+                            <div id="messageHistory"></div>
+                            
+                            <div class="scheduled-messages">
+                                <h3>Scheduled Messages</h3>
+                                <div id="scheduledMessages"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other tabs remain the same -->
+                <!-- ... -->
+            </div>
+        </div>
+    </div>
+        <!-- Tab 11: Calendar -->
+        <!-- Tab 11: Enhanced Calendar -->
+<div id="tab11" class="tab-content">
+  <h1><i class="fas fa-calendar-alt"></i> Operations Calendar & Event Manager</h1>
+  
+  <div class="calendar-container">
+    <!-- Calendar Navigation -->
+    <div class="calendar-header">
+      <button onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
+      <h2 id="calendar-month-year">Month Year</h2>
+      <button onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
+      <button onclick="goToToday()" class="today-btn"><i class="fas fa-calendar-day"></i> Today</button>
+    </div>
+    
+    <!-- Calendar Grid -->
+    <div class="calendar-grid" id="calendar-grid">
+      <div class="calendar-weekdays">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      </div>
+      <div class="calendar-days" id="calendar-days"></div>
+    </div>
+    
+    <!-- Event Form -->
+    <div class="event-form-container">
+      <h3><i class="fas fa-plus-circle"></i> Add/Edit Event</h3>
+      <form id="calendarForm">
+        <div class="form-group">
+          <label for="eventTitle">Event Title:</label>
+          <input type="text" id="eventTitle" placeholder="Enter event title" required>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventStartDate">Start Date:</label>
+            <input type="datetime-local" id="eventStartDate" required>
+          </div>
+          <div class="form-group">
+            <label for="eventEndDate">End Date:</label>
+            <input type="datetime-local" id="eventEndDate">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="eventDescription">Description:</label>
+          <textarea id="eventDescription" placeholder="Enter event details"></textarea>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventColor">Color:</label>
+            <input type="color" id="eventColor" value="#3b82f6">
+          </div>
+          <div class="form-group">
+            <label for="eventPriority">Priority:</label>
+            <select id="eventPriority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="eventRepeat">Repeat:</label>
+          <select id="eventRepeat">
+            <option value="none">Does not repeat</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+            <option value="custom">Custom...</option>
+          </select>
+        </div>
+        
+        <div class="form-group" id="customRepeatOptions" style="display:none;">
+          <label>Custom Repeat:</label>
+          <div class="repeat-options">
+            <input type="number" id="repeatEvery" min="1" value="1" style="width: 50px;">
+            <select id="repeatFrequency">
+              <option value="days">day(s)</option>
+              <option value="weeks">week(s)</option>
+              <option value="months">month(s)</option>
+              <option value="years">year(s)</option>
+            </select>
+            <div class="weekdays-options" id="weekdaysOptions" style="display:none;">
+              <label>On:</label>
+              <label><input type="checkbox" name="weekday" value="0"> Sun</label>
+              <label><input type="checkbox" name="weekday" value="1"> Mon</label>
+              <label><input type="checkbox" name="weekday" value="2"> Tue</label>
+              <label><input type="checkbox" name="weekday" value="3"> Wed</label>
+              <label><input type="checkbox" name="weekday" value="4"> Thu</label>
+              <label><input type="checkbox" name="weekday" value="5"> Fri</label>
+              <label><input type="checkbox" name="weekday" value="6"> Sat</label>
+            </div>
+          </div>
+          <div class="repeat-end">
+            <label>Ends:</label>
+            <label><input type="radio" name="repeatEnd" value="never" checked> Never</label>
+            <label><input type="radio" name="repeatEnd" value="after"> After 
+              <input type="number" id="repeatOccurrences" min="1" value="10" style="width: 50px;"> occurrences</label>
+            <label><input type="radio" name="repeatEnd" value="on"> On 
+              <input type="date" id="repeatEndDate"></label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="eventReminder">Reminder:</label>
+          <select id="eventReminder">
+            <option value="none">None</option>
+            <option value="5">5 minutes before</option>
+            <option value="15">15 minutes before</option>
+            <option value="30">30 minutes before</option>
+            <option value="60">1 hour before</option>
+            <option value="1440">1 day before</option>
+            <option value="10080">1 week before</option>
+            <option value="custom">Custom...</option>
+          </select>
+        </div>
+        
+        <div class="form-group" id="customReminderOptions" style="display:none;">
+          <label>Custom Reminder:</label>
+          <input type="number" id="customReminderValue" min="1" value="30" style="width: 60px;">
+          <select id="customReminderUnit">
+            <option value="minutes">minutes before</option>
+            <option value="hours">hours before</option>
+            <option value="days">days before</option>
+            <option value="weeks">weeks before</option>
+          </select>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" id="saveEventBtn"><i class="fas fa-save"></i> Save Event</button>
+          <button type="button" onclick="clearEventForm()" id="cancelEventBtn"><i class="fas fa-times"></i> Cancel</button>
+          <button type="button" onclick="deleteCurrentEvent()" id="deleteEventBtn" style="display:none;"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Event List -->
+    <div class="event-list-container">
+      <h3><i class="fas fa-list-ul"></i> Upcoming Events</h3>
+      <div class="event-list-actions">
+        <select id="eventListFilter">
+          <option value="all">All Events</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+          <option value="high">High Priority</option>
+          <option value="critical">Critical Priority</option>
+        </select>
+        <button onclick="exportCalendar()"><i class="fas fa-file-export"></i> Export</button>
+        <button onclick="printCalendar()"><i class="fas fa-print"></i> Print</button>
+      </div>
+      <div class="event-list" id="eventList"></div>
+    </div>
+  </div>
+</div>
+
+        <!-- Tab 12: Analytics -->
+        <div id="tab12" class="tab-content">
+          <h1><i class="fas fa-chart-line"></i> Satellite Analytics</h1>
+          
+          <div class="groups">
+            <!-- Group 1: Telemetry Analytics -->
+            <div class="group">
+              <h2><i class="fas fa-wave-square"></i> Telemetry Analytics</h2>
+              <button onclick="showTelemetryChart('power')">
+                <i class="fas fa-battery-full"></i> Power Subsystem
+              </button>
+              <button onclick="showTelemetryChart('thermal')">
+                <i class="fas fa-temperature-high"></i> Thermal Subsystem
+              </button>
+              <button onclick="showTelemetryChart('attitude')">
+                <i class="fas fa-compass"></i> Attitude Control
+              </button>
+              <button onclick="showTelemetryChart('propulsion')">
+                <i class="fas fa-rocket"></i> Propulsion
+              </button>
+              <button onclick="showTelemetryChart('communications')">
+                <i class="fas fa-satellite-dish"></i> Communications
+              </button>
+            </div>
+
+            <!-- Group 2: Performance Metrics -->
+            <div class="group">
+              <h2><i class="fas fa-tachometer-alt"></i> Performance Metrics</h2>
+              <button onclick="showPerformanceChart('signal')">
+                <i class="fas fa-signal"></i> Signal Quality
+              </button>
+              <button onclick="showPerformanceChart('throughput')">
+                <i class="fas fa-network-wired"></i> Throughput
+              </button>
+              <button onclick="showPerformanceChart('availability')">
+                <i class="fas fa-percentage"></i> Availability
+              </button>
+              <button onclick="showPerformanceChart('anomalies')">
+                <i class="fas fa-exclamation-triangle"></i> Anomalies
+              </button>
+              <button onclick="showPerformanceChart('trends')">
+                <i class="fas fa-chart-line"></i> Long-term Trends
+              </button>
+            </div>
+          </div>
+          
+          <div class="chart-container" id="analyticsChartContainer">
+            <canvas id="analyticsChart"></canvas>
+          </div>
+          
+          <div class="input-group" style="margin-top: 20px;">
+            <div>
+              <label>Time Range:</label>
+              <select id="timeRange">
+                <option value="24h">Last 24 Hours</option>
+                <option value="7d">Last 7 Days</option>
+                <option value="30d">Last 30 Days</option>
+                <option value="90d">Last 90 Days</option>
+                <option value="1y">Last Year</option>
+                <option value="custom">Custom Range</option>
+              </select>
+            </div>
+            
+            <div id="customRangeContainer" style="display: none;">
+              <label>From:</label>
+              <input type="date" id="dateFrom">
+              
+              <label>To:</label>
+              <input type="date" id="dateTo">
+            </div>
+            
+            <div>
+              <button onclick="updateAnalyticsChart()">
+                <i class="fas fa-sync-alt"></i> Update Chart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <div id="tab13" class="tab-content">
+  <h1><i class="fas fa-chart-line"></i> Nilesat Localization Campaign</h1>
+  
+  <div class="groups">
+    <div class="dashboard navy-blue">
+      <h2>Nilesat Localization Campaign</h2>
+
+      <div class="satellite-select">
+        <label>Select Satellite:</label>
+        <select id="satelliteSelect">
+          <option value="201">Nilesat 201</option>
+          <option value="301">Nilesat 301</option>
+        </select>
+      </div>
+
+      <div class="address-block">
+        <input type="text" id="addressName" placeholder="Address Name">
+        <input type="text" id="localizationCampaign" placeholder="Localization Campaign">
+         <input type="text" id="engineerName" placeholder="Control Engineer Name">
+      </div>
+
+      <div class="engineer-details">
+       
+        <input type="datetime-local" id="startDateTime">
+        <input type="datetime-local" id="endDateTime">
+        <input type="text" id="pathUsed" placeholder="Path Used">
+      </div>
+
+      <div class="reading-inputs">
+        <input type="number" id="readingNumber" placeholder="Number" readonly>
+        <input type="date" id="readingDate">
+        <input type="time" id="readingTime">
+         </div>
+      <div class="buttons">                                                 
+        <input type="number" id="range" placeholder="Range">
+        <input type="number" id="azimuth" placeholder="Azimuth">
+        <input type="number" id="elevation" placeholder="Elevation">
+      </div>
+      <div class="buttons">
+        <button onclick="saveReading()" style="background-color: green;">Save</button>
+        <button onclick="deleteLast()" style="background-color: orange;">Delete</button>
+        <button onclick="openSettings()" style="background-color: navy;">Settings</button>
+        <button onclick="displayLocTable()" style="background-color: gray;">Loc Table</button>
+        <button onclick="copyData()" style="background-color: teal;">Copy Data</button>
+        <button onclick="exportToExcel()" style="background-color: darkgreen;">Export to Excel</button>
+        <button onclick="showChart('range')" style="background-color: darkblue;">Range</button>
+        <button onclick="showChart('azimuth')" style="background-color: darkgreen;">Azimuth</button>
+        <button onclick="showChart('elevation')" style="background-color: darkred;">Elevation</button>
+        <button onclick="showAllCharts()" style="background-color: purple;">All Charts</button>
+        <button onclick="showSummaryCharts()" style="background-color: maroon;">Sum Charts</button>
+        <button onclick="clearAllData()" style="background-color: crimson;">Clear</button>
+      </div>
+
+      <div id="hiddenTable201" class="hidden-table" style="display:none;"></div>
+      <div id="hiddenTable301" class="hidden-table" style="display:none;"></div>
+      <div id="settingsPanel" class="settings-panel hidden"></div>
+      <div id="chartsContainer"></div>
+    </div>
+  </div>
+</div>
+  </div>
+   </div>
+   <div id="tab15" class="tab-content">
+ <div class="training-container">
+    <div class="training-header">
+      <h1><i class="fas fa-graduation-cap"></i> Nilesat Training Centre</h1>
+      <p>Management of training courses and team development</p>
+    </div>
+
+    <div class="training-tabs">
+      <button class="training-tab-btn active" data-tab="course">
+        <i class="fas fa-book"></i> Course Training
+      </button>
+      <button class="training-tab-btn" data-tab="team">
+        <i class="fas fa-users"></i> Team Training
+      </button>
+    </div>
+
+    <div id="training-buttons-container" class="training-button-group"></div>
+
+    <div class="training-tools">
+      <div class="training-input-group">
+        <input type="text" id="trainingSearchInput" placeholder="Search by ID or name" onkeyup="filterTrainingTable()">
+        <button onclick="showTrainingSearchSuggestions()"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="training-search-suggestions" id="trainingSearchSuggestions"></div>
+      
+      <div class="training-tool-buttons">
+        <button onclick="exportTrainingCSV()"><i class="fas fa-file-export"></i> Export Full</button>
+        <button onclick="exportTrainingSearchResult()"><i class="fas fa-file-export"></i> Export Search</button>
+        <button id="openSourceBtn"><i class="fas fa-external-link-alt"></i> Open Source</button>
+        <input type="file" id="trainingImportFile" style="display: none;">
+        <button onclick="document.getElementById('trainingImportFile').click()"><i class="fas fa-file-import"></i> Import</button>
+        <button onclick="printTrainingTable()"><i class="fas fa-print"></i> Print Table</button>
+        <button onclick="printTrainingSearch()"><i class="fas fa-print"></i> Print Search</button>
+      </div>
+    </div>
+
+    <div id="training-table-container" class="training-table-responsive">
+      <table id="trainingDataTable" class="training-results-table">
+        <thead id="trainingTableHead"></thead>
+        <tbody id="trainingTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="training-footer">
+      <p>&copy; Nilesat Training Centre</p>
+    </div>
+  </div>
+
+  <div class="training-loading" id="trainingLoading">
+    <div class="training-loading-spinner"></div>
+  </div>
+</div>
+</div>
+</div>
+
+     
+
+
+     
+     
+  <div id="tab16" class="tab-content">
+  
+     <h3>Data Processing Dashboard</h3>
+
+ <div class="Day Log">  
+
+  <h2>Satellite Logbook Data Analysis</h2>
+  
+  <div id="dqControls">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <label for="dqDeptSelect">Departments:</label>
+      <select id="dqDeptSelect" multiple size="5" style="height: auto;">
+        <option value="controlA" selected>Control Gcs</option>
+        <option value="controlB" selected>Control 301</option>
+        <option value="controlC" selected>Control 201</option>
+        <option value="satellite" selected>Satellite</option>
+        <option value="maintenance" selected>Maintenance</option>
+        <option value="controlAAlex" selected>Control Alex-Gcs</option>
+        <option value="controlBAlex" selected>Control Alex-301</option>
+        <option value="controlCAlex" selected>Control Alex 201</option>
+        <option value="satelliteAlex" selected>Alex-Satellite</option>
+        <option value="maintenanceAlex" selected>Alex-Maintenance</option>
+      </select>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <label for="dqDateFrom">From:</label>
+      <input type="date" id="dqDateFrom">
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <label for="dqDateTo">To:</label>
+      <input type="date" id="dqDateTo">
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px; position: relative;">
+      <label for="dqSearchInput">Search:</label>
+      <input type="text" id="dqSearchInput" placeholder="Search across all data...">
+    </div>
+
+    <div id="dqButtons">
+      <button id="dqLoadBtn">
+        <i>📊</i> Load Data
+      </button>
+      <button id="dqProcessBtn" disabled>
+        <i>⚙️</i> Process
+      </button>
+      <button id="dqExportBtn" disabled>
+        <i>📥</i> Export
+      </button>
+      <button id="dqPrintBtn" disabled>
+        <i>🖨️</i> Print
+      </button>
+      <button id="dqUndoBtn" disabled>
+        <i>↩️</i> Undo
+      </button>
+    </div>
+  </div>
+
+  <div id="dqProcessingPanel">
+    <h3>Advanced Data Processing</h3>
+    <div id="dqProcessingControls">
+      <div class="processing-group">
+        <label>Column Operations</label>
+        <select id="dqColumnSelect" multiple size="5"></select>
+        <button id="dqDeleteColBtn">Delete Selected Columns</button>
+      </div>
+      <div class="processing-group">
+        <label>Row Operations</label>
+        <button id="dqSelectAllRows">Select All Rows</button>
+        <button id="dqDeselectAllRows">Deselect All Rows</button>
+        <button id="dqDeleteRowsBtn">Delete Selected Rows</button>
+      </div>
+      <div class="processing-group">
+        <label>Column Visibility</label>
+        <div id="dqColumnCheckboxes" class="column-selector"></div>
+      </div>
+      <div class="processing-group">
+        <label>Advanced Features</label>
+        <button id="dqMakeSmartTableBtn">Enable Smart Table</button>
+        <div class="smart-table-controls" id="smartTableControls" style="display: none;">
+          <label for="dqFilterColumn">Filter Column:</label>
+          <select id="dqFilterColumn"></select>
+          <label for="dqFilterValue">Value:</label>
+          <input type="text" id="dqFilterValue" placeholder="Enter filter value">
+          <button id="dqApplyFilterBtn">Apply Filter</button>
+          <button id="dqClearFilterBtn">Clear Filter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="dqStatusBar" style="display: none;">
+    <span id="dqRowCount">0 rows loaded</span>
+    <span id="dqLastUpdate">Last updated: Never</span>
+  </div>
+
+  <div style="overflow-x:auto; position: relative; border-radius: 6px; border: 1px solid var(--border-color);">
+    <table id="dayQualityTable" aria-label="Satellite Logbook Data Table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+        <!-- Tab 17: Employee Timesheets (RTL Arabic version) -->
+        <div id="tab17" class="tab-content" dir="rtl">
+          <div class="timesheet-container">
+            <!-- Login Page -->
+            <div id="timesheet-login-page" class="login-container">
+              <img src="https://www.nilesat.com.eg/images/logo.png" alt="Nilesat Logo" class="login-logo">
+              <h1 class="login-title">نظام إدارة جداول الموظفين - نايل سات</h1>
+              <form id="timesheet-login-form" class="login-form">
+                <div class="form-group">
+                  <label for="timesheet-login-employee">اسم الموظف</label>
+                  <select id="timesheet-login-employee" class="login-input" required>
+                    <option value="">-- اختر الموظف --</option>
+                    <optgroup label="إدارة تقنية المعلومات">
+                      <option value="1">احمد جلال حسين</option>
+                      <option value="2">محمد علي ابراهيم</option>
+                      <option value="3">عبدالله سعيد محمد</option>
+                    </optgroup>
+                    <optgroup label="إدارة العمليات">
+                      <option value="4">خالد حسن عبدالرحمن</option>
+                      <option value="5">ياسر ناصر عبدالله</option>
+                      <option value="6">سعيد عبدالعزيز سليمان</option>
+                    </optgroup>
+                    <optgroup label="إدارة المالية">
+                      <option value="7">ناصر علي محمد</option>
+                      <option value="8">عبدالرحمن ابراهيم حسين</option>
+                      <option value="9">فهد خالد سعد</option>
+                    </optgroup>
+                    <optgroup label="إدارة الموارد البشرية">
+                      <option value="10">تركي عبدالله ناصر</option>
+                      <option value="11">سلمان محمد احمد</option>
+                      <option value="12">بدر عبدالعزيز راشد</option>
+                    </optgroup>
+                    <optgroup label="الإدارة العليا">
+                      <option value="admin">مدير النظام</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="timesheet-login-password">كلمة المرور</label>
+                  <div class="password-container">
+                    <input type="password" id="timesheet-login-password" class="login-input" placeholder="أدخل كلمة المرور" required>
+                    <i class="fas fa-eye toggle-password" id="timesheet-toggle-password"></i>
+                  </div>
+                </div>
+                <button type="submit" class="login-btn">
+                  <i class="fas fa-sign-in-alt"></i> دخول
+                </button>
+                <div id="timesheet-login-error" class="error-message"></div>
+              </form>
+            </div>
+
+            <!-- Main App (hidden until login) -->
+            <div id="timesheet-app-container" class="app-container">
+              <button id="timesheet-logout-btn" class="logout-btn" title="تسجيل خروج">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
+
+              <div class="app-header">
+                <div class="header-info">
+                  <div class="header-title">كود النموذج : NSAT.HR.P02.F02</div>
+                  <div class="header-title">رقم الإصدار: 01</div>
+                  <div class="header-title">تاريخ الإصدار: 1/6/2023</div>
+                </div>
+                <img src="https://www.nilesat.com.eg/images/logo.png" alt="Nilesat Logo" class="company-logo">
+                <div class="user-info">
+                  <i class="fas fa-user-circle user-icon"></i>
+                  <div>
+                    <div id="current-user-name"></div>
+                    <div id="current-user-role" style="font-size: 12px; color: #666;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="department-filter no-print" id="department-filter" style="display: none;">
+                <label for="filter-department" class="control-label">تصفية حسب الإدارة:</label>
+                <select id="filter-department" class="login-input">
+                  <option value="all">جميع الإدارات</option>
+                  <option value="تقنية المعلومات">إدارة تقنية المعلومات</option>
+                  <option value="العمليات">إدارة العمليات</option>
+                  <option value="المالية">إدارة المالية</option>
+                  <option value="الموارد البشرية">إدارة الموارد البشرية</option>
+                </select>
+              </div>
+
+              <div class="stats-container no-print" id="stats-container">
+                <div class="stat-card">
+                  <div style="display: flex; align-items: center;">
+                    <i class="fas fa-clock stat-icon"></i>
+                    <div>
+                      <div class="stat-title">إجمالي الساعات الإضافية</div>
+                      <div class="stat-value" id="total-overtime">0</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div style="display: flex; align-items: center;">
+                    <i class="fas fa-calendar-day stat-icon"></i>
+                    <div>
+                      <div class="stat-title">أيام العمل</div>
+                      <div class="stat-value" id="working-days">0</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div style="display: flex; align-items: center;">
+                    <i class="fas fa-umbrella-beach stat-icon"></i>
+                    <div>
+                      <div class="stat-title">أيام الإجازة</div>
+                      <div class="stat-value" id="vacation-days">0</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div style="display: flex; align-items: center;">
+                    <i class="fas fa-coins stat-icon"></i>
+                    <div>
+                      <div class="stat-title">إجمالي المستحقات</div>
+                      <div class="stat-value" id="total-payment">0 ج.م</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="controls no-print">
+                <div class="control-group">
+                  <label for="employee" class="control-label">الاســـم:</label>
+                  <select id="employee" name="employee" class="login-input">
+                    <optgroup label="إدارة تقنية المعلومات">
+                      <option value="1">احمد جلال حسين</option>
+                      <option value="2">محمد علي ابراهيم</option>
+                      <option value="3">عبدالله سعيد محمد</option>
+                    </optgroup>
+                    <optgroup label="إدارة العمليات">
+                      <option value="4">خالد حسن عبدالرحمن</option>
+                      <option value="5">ياسر ناصر عبدالله</option>
+                      <option value="6">سعيد عبدالعزيز سليمان</option>
+                    </optgroup>
+                    <optgroup label="إدارة المالية">
+                      <option value="7">ناصر علي محمد</option>
+                      <option value="8">عبدالرحمن ابراهيم حسين</option>
+                      <option value="9">فهد خالد سعد</option>
+                    </optgroup>
+                    <optgroup label="إدارة الموارد البشرية">
+                      <option value="10">تركي عبدالله ناصر</option>
+                      <option value="11">سلمان محمد احمد</option>
+                      <option value="12">بدر عبدالعزيز راشد</option>
+                    </optgroup>
+                  </select>
+                </div>
+                <div class="control-group">
+                  <label for="month" class="control-label">الشهر:</label>
+                  <select id="month" name="month" class="login-input">
+                    <option value="0">يناير</option>
+                    <option value="1">فبراير</option>
+                    <option value="2">مارس</option>
+                    <option value="3">أبريل</option>
+                    <option value="4">مايو</option>
+                    <option value="5">يونيو</option>
+                    <option value="6" selected>يوليو</option>
+                    <option value="7">أغسطس</option>
+                    <option value="8">سبتمبر</option>
+                    <option value="9">أكتوبر</option>
+                    <option value="10">نوفمبر</option>
+                    <option value="11">ديسمبر</option>
+                  </select>
+                  <label for="year" class="control-label">السنة:</label>
+                  <input type="number" id="year" name="year" class="login-input" value="2025" min="2000" max="2100">
+                  <button id="update-btn">
+                    <i class="fas fa-sync-alt"></i> تحديث
+                  </button>
+                </div>
+                <div class="action-buttons">
+                  <button id="save-btn">
+                    <i class="fas fa-save"></i> حفظ
+                  </button>
+                  <button id="print-btn" class="btn-print">
+                    <i class="fas fa-print"></i> طباعة
+                  </button>
+                  <button id="print-all-btn" class="btn-print btn-admin" style="display: none;">
+                    <i class="fas fa-print"></i> طباعة الكل
+                  </button>
+                  <button id="export-btn" class="btn-export">
+                    <i class="fas fa-file-export"></i> تصدير Excel
+                  </button>
+                  <button id="reset-btn" class="btn-danger">
+                    <i class="fas fa-undo"></i> إعادة تعيين
+                  </button>
+                </div>
+              </div>
+  </div>
+              <div class="table-container">
+                <table id="timesheet">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">اليوم</th>
+                      <th rowspan="2">التاريخ</th>
+                      <th colspan="4">ساعات العمل الفعلية</th>
+                      <th rowspan="2">المعامل</th>
+                      <th rowspan="2">اجمالى الساعات الاضافيه</th>
+                      <th rowspan="2">ملاحظات</th>
+                      <th rowspan="2" class="no-print">إجراءات</th>
+                    </tr>
+                    <tr>
+                      <th>من الساعة</th>
+                      <th>الى الساعة</th>
+                      <th>عدد الساعات الفعلية</th>
+                      <th>عدد الساعات الأضافية</th>
+                    </tr>
+                  </thead>
+                  <tbody id="timesheet-body">
+                    <!-- Rows will be generated by JavaScript -->
+                  </tbody>
+                  <tfoot id="timesheet-footer" class="no-print">
+                    <!-- Summary row will be added here -->
+                  </tfoot>
+                </table>
+              </div>
+
+              <div class="signature-section">
+                <div class="signature-box">
+                  <div class="signature-line">التوقيع:</div>
+                  <div class="notes">1 * ساعات العمل العادية</div>
+                  <div class="notes">1.5 * ساعات العمل الإضافية العادية</div>
+                  <div class="notes">2 * ساعات العمل الإضافية في أيام العطلات الرسمية</div>
+                </div>
+                <div class="signature-box" style="text-align: left;">
+                  <div class="signature-line">رئيس القطاع:</div>
+                  <div class="notes">تاريخ: _____ / _____ / ___________</div>
+                </div>
+              </div>
+
+              <div id="timesheet-notification" class="notification">
+                <i class="fas fa-check-circle notification-icon"></i>
+                <div id="timesheet-notification-message"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+   <script src="script.js"></script>
+</body>
+</html>
